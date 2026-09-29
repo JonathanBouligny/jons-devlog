@@ -6,6 +6,8 @@ tags: ["cert-manager", "cloudflare", "dns-01", "kubernetes", "letsencrypt", "ans
 draft: false
 ---
 
+> **Note on Build Chronology**: *This devlog was started mid-flight during the cert-manager & ingress milestone. Foundational build logs for Phase 0 (two-node k3s bootstrap) and Phase 1 (Proxmox/Terraform/Ansible) are currently being backfilled.*
+
 ## cert-manager
 
 Setting up cert-manager was pretty easy with a Helm chart. I did spend a lot of time on this step but it was mostly googling and figuring out what to do about bootstrap secrets which I detail below. The most interesting thing I learned was part of the values file, specifically `installCRDs` (or `crds.enabled`, depending on chart version). CRDs, Custom Resource Definitions, are objects that teach the Kubernetes API server about new kinds of resources, like `Certificate` and `ClusterIssuer`. They're not backed by Go directly, they're schema definitions, and a controller (cert-manager's own pod, running Go code) is what actually watches for objects of that kind and acts on them. So a CRD without its controller running is just an inert schema. The controller is the operator, the CRD is the vocabulary it teaches the cluster.

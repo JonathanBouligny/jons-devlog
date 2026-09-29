@@ -11,3 +11,7 @@ theme = 'ananke'
     name = 'Fleet Platform'
     pageRef = '/fleet-platform'
     weight = 10
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 20

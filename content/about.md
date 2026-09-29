@@ -12,7 +12,7 @@ I hold the **Red Hat Certified Architect (RHCA) in Ansible** credential and spec
 
 ## What I'm Building Now: Fleet Platform
 
-My current flagship engineering project is **[fleet-platform](/fleet-platform/)**—a fully reproducible, GitOps-managed Kubernetes platform deployed on a self-hosted 3-node Proxmox cluster (40 cores, 157 GB RAM).
+My current flagship engineering project is **[fleet-platform](/fleet-platform/)** ([GitHub Repository](https://github.com/JonathanBouligny/fleet-platform))—a fully reproducible, GitOps-managed Kubernetes platform deployed on a self-hosted 3-node Proxmox cluster (40 cores, 157 GB RAM).
 
 * **Infrastructure as Code**: VMs provisioned via Terraform (`bpg/proxmox`) from cloud-init templates; nodes configured and bootstrapped via Ansible.
 * **Declarative GitOps**: Full cluster state managed via Argo CD (app-of-apps pattern) syncing from a code-provisioned Forgejo instance with remote Terraform state locked in AWS S3.

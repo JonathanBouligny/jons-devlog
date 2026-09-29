@@ -9,6 +9,7 @@ cascade:
 
 Every layer—from virtual machine provisioning to cluster networking, GitOps controllers, ingress, and wildcard TLS—is declared in code and version-controlled.
 
+* **Source Code**: Full infrastructure code, Terraform manifests, Ansible playbooks, and GitOps declarations are public at [github.com/JonathanBouligny/fleet-platform](https://github.com/JonathanBouligny/fleet-platform).
 * **Cattle, Not Pets**: The real test of reproducibility is a full teardown. The entire platform—VMs, cluster, GitOps engine, ingress, and wildcard TLS—is continuously verified by rebuilding from empty hypervisors via a single automated script to guarantee zero configuration drift.
 * **The Endgame**: A parallel headless **Gazebo robotics simulation farm** driven by Argo Workflows (50 deterministic, seeded runs per commit yielding pass/fail regression reports) backed by dedicated GPU acceleration.
 

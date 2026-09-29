@@ -6,7 +6,7 @@ tags: ["cert-manager", "cloudflare", "dns-01", "kubernetes", "letsencrypt", "ans
 draft: false
 ---
 
-> **Note on Build Chronology**: *This devlog was started mid-flight during the cert-manager & ingress milestone. Foundational build logs for Phase 0 (two-node k3s bootstrap) and Phase 1 (Proxmox/Terraform/Ansible) are currently being backfilled.*
+> **A note on order:** I started this devlog partway through, around the cert-manager and ingress work, so the posts aren't showing up in the order I actually built things. Phase 0 (the Proxmox/Terraform/Ansible foundation and the k3s bootstrap) and Phase 1 (Argo CD and ingress) came first — I'm backfilling those writeups now. The phase numbers in the titles are the real order to read them in.
 
 ## cert-manager
 

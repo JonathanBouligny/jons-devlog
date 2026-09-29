@@ -1,6 +1,6 @@
 {{ define "main" }}
   <div class="mw8 center ph3 ph4-ns pv4">
-    <!-- Hero Header -->
+    <!-- Hero Header Card -->
     <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
       <div class="flex-ns items-start-ns justify-between-ns">
         <div class="w-100 w-70-l">
@@ -17,114 +17,129 @@
       </div>
     </div>
 
-    <!-- 2-Column Side-by-Side Layout with distinct gap -->
-    <div class="flex-l justify-between">
-
-      <!-- Left Column: Architecture & Build Roadmap (56% width with right padding) -->
-      <div class="w-100 w-56-l mb4 mb0-l pr3-l">
-        <div class="bg-white ba b--black-10 br3 pa4 shadow-1 h-100">
-          <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
-            <span>🗺️ Architecture & Build Roadmap</span>
-            <span class="f6 fw4 gray">10 Milestones</span>
-          </h2>
-
-          <div class="overflow-auto">
-            <table class="w-100 collapse f6 tl">
-              <thead>
-                <tr class="bb b--black-20 ttu tracking-wider f7 gray">
-                  <th class="pv2 ph2 w-20">Phase</th>
-                  <th class="pv2 ph2 w-55">Milestone Topic</th>
-                  <th class="pv2 ph2 tr w-25">Status</th>
-                </tr>
-              </thead>
-              <tbody class="lh-copy">
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 0</td>
-                  <td class="pv2.5 ph2 mid-gray">Cluster Foundation (Proxmox, k3s, cloud-init)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold px2 py1 br2 f7 dib">Backfilling</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 1</td>
-                  <td class="pv2.5 ph2 mid-gray">GitOps & Ingress (Argo CD, HAProxy)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold px2 py1 br2 f7 dib">Backfilling</span></td>
-                </tr>
-                <tr class="bg-washed-green bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 dark-green">Phase 2.1</td>
-                  <td class="pv2.5 ph2 dark-gray fw6">TLS & Ingress Security (cert-manager, Cloudflare)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white px2.5 py1 br2 f7 fw6 shadow-1 dib">Read &rarr;</a></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 2.2</td>
-                  <td class="pv2.5 ph2 mid-gray">Isolated GitOps Engine (Forgejo setup)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue px2 py1 br2 f7 dib">In Progress</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 2.3</td>
-                  <td class="pv2.5 ph2 mid-gray">AWS Remote State & S3 Locking</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue px2 py1 br2 f7 dib">In Progress</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 gray">Phase 3</td>
-                  <td class="pv2.5 ph2 gray">Platform Observability (Prometheus, Grafana)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7 dib">Planned</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 gray">Phase 4</td>
-                  <td class="pv2.5 ph2 gray">Synthetic Workloads & k6 Load Generation</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7 dib">Planned</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 gray">Phase 5</td>
-                  <td class="pv2.5 ph2 gray">Zero-Trust Secrets (SOPS, age, OpenBao)</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7 dib">Planned</span></td>
-                </tr>
-                <tr class="bb b--black-05">
-                  <td class="pv2.5 ph2 fw7 gray">Phase 6–8</td>
-                  <td class="pv2.5 ph2 gray">Cloud-Native Storage, GPU Integration, DDS</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7 dib">Planned</span></td>
-                </tr>
-                <tr>
-                  <td class="pv2.5 ph2 fw7 dark-red">Phase 9</td>
-                  <td class="pv2.5 ph2 dark-red fw6">Sim Farm: Gazebo + Argo Workflows</td>
-                  <td class="pv2.5 ph2 tr nowrap"><span class="bg-washed-red dark-red ba b--red px2 py1 br2 f7 fw6 dib">Capstone</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <!-- Published Engineering Logs (Hugo Native Paginator: 3 posts per page) -->
+    {{ $paginator := .Paginate .Pages 3 }}
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
+        <h2 class="f4 fw7 dark-gray ma0">📝 Published Engineering Logs</h2>
+        <span class="f6 fw6 gray">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }} ({{ len .Pages }} Total Posts)</span>
       </div>
 
-      <!-- Right Column: Published Logs (40% width with left padding) -->
-      <div class="w-100 w-40-l pl3-l">
-        <div class="bg-white ba b--black-10 br3 pa4 shadow-1 h-100">
-          <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
-            <span>📝 Published Logs</span>
-            <span class="f6 fw6 gray">{{ len .Pages }} Posts</span>
-          </h2>
-
-          <div class="flex flex-column gap3">
-            {{ range .Pages }}
-              <div class="ba b--black-10 br3 pa3 bg-near-white hover-b--black-30 transition">
-                <div class="flex justify-between items-center f7 gray mb2">
-                  <span>{{ .Date.Format "Jan 02, 2006" }}</span>
-                  <span class="bg-light-gray dark-gray px2 py0.5 br1 fw6 font-mono">Phase 2.1</span>
-                </div>
-                <h3 class="f5 fw7 dark-gray mt0 mb2 lh-title">
-                  <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
-                </h3>
-                <p class="f6 mid-gray lh-copy mt0 mb3">
-                  {{ .Summary | truncate 130 }}
-                </p>
-                <div class="flex justify-between items-center pt2 bt b--black-10">
-                  <span class="f7 gray">{{ .ReadingTime }} min read</span>
-                  <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw6">Read Article &rarr;</a>
-                </div>
+      <div class="flex flex-column gap3">
+        {{ range $paginator.Pages }}
+          <div class="ba b--black-10 br3 pa4 bg-near-white hover-b--black-30 transition">
+            <div class="flex justify-between items-center f7 gray mb2">
+              <div class="flex items-center gap2">
+                <span class="bg-light-gray dark-gray ph2 py0.5 br1 fw6 font-mono">Phase {{ .Params.phase | default "2.1" }}</span>
+                <span>{{ .Date.Format "January 02, 2006" }}</span>
               </div>
+              <span>{{ .ReadingTime }} min read</span>
+            </div>
+
+            <h3 class="f3 fw7 dark-gray mt1 mb2 lh-title">
+              <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
+            </h3>
+
+            <p class="f5 mid-gray lh-copy mt0 mb3 measure-wide">
+              {{ .Summary }}
+            </p>
+
+            <div class="flex justify-between items-center pt3 bt b--black-10">
+              <div class="flex flex-wrap gap1 f7">
+                {{ range .Params.tags }}
+                  <span class="bg-white ba b--black-10 mid-gray ph2 py0.5 br1">{{ . }}</span>
+                {{ end }}
+              </div>
+              <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7">Read Full Post &rarr;</a>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <!-- Native Hugo Pagination Controls -->
+      {{ if gt $paginator.TotalPages 1 }}
+        <div class="pt3 mt3 bt b--black-10 flex items-center justify-between f6 gray">
+          <div>Page <span class="fw7 dark-gray">{{ $paginator.PageNumber }}</span> of <span class="fw7 dark-gray">{{ $paginator.TotalPages }}</span></div>
+          <div class="flex gap1 items-center">
+            {{ if $paginator.HasPrev }}
+              <a href="{{ $paginator.Prev.URL }}" class="no-underline bg-light-gray dark-gray ph3 pv1.5 br2 fw6 hover-bg-moon-gray">&laquo; Previous</a>
+            {{ else }}
+              <span class="bg-light-gray gray ph3 pv1.5 br2 cursor-not-allowed o-50">&laquo; Previous</span>
+            {{ end }}
+
+            {{ range $paginator.Pagers }}
+              {{ if eq . $paginator }}
+                <span class="bg-near-black white ph3 pv1.5 br2 fw7">{{ .PageNumber }}</span>
+              {{ else }}
+                <a href="{{ .URL }}" class="no-underline bg-light-gray dark-gray ph3 pv1.5 br2 fw6 hover-bg-moon-gray">{{ .PageNumber }}</a>
+              {{ end }}
+            {{ end }}
+
+            {{ if $paginator.HasNext }}
+              <a href="{{ $paginator.Next.URL }}" class="no-underline bg-light-gray dark-gray ph3 pv1.5 br2 fw6 hover-bg-moon-gray">Next &raquo;</a>
+            {{ else }}
+              <span class="bg-light-gray gray ph3 pv1.5 br2 cursor-not-allowed o-50">Next &raquo;</span>
             {{ end }}
           </div>
         </div>
-      </div>
+      {{ end }}
+    </div>
 
+    <!-- Architecture & Build Roadmap (Full Width Table) -->
+    <div class="bg-white ba b--black-10 br3 pa4 shadow-1">
+      <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
+        <span>🗺️ Architecture & Build Roadmap</span>
+        <span class="f6 fw4 gray">10 Milestones</span>
+      </h2>
+
+      <div class="overflow-auto">
+        <table class="w-100 collapse f6 tl">
+          <thead>
+            <tr class="bb b--black-20 ttu tracking-wider f7 gray bg-near-white">
+              <th class="pv3 ph3 w-20">Phase</th>
+              <th class="pv3 ph3 w-60">Milestone Topic & Focus Areas</th>
+              <th class="pv3 ph3 tr w-20">Status</th>
+            </tr>
+          </thead>
+          <tbody class="lh-copy">
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 dark-gray">Phase 0</td>
+              <td class="pv3 ph3 mid-gray">Cluster Foundation (Proxmox hypervisors, 2-node k3s bootstrap, cloud-init templates)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 dark-gray">Phase 1</td>
+              <td class="pv3 ph3 mid-gray">GitOps & Ingress (Ansible AAP bootstrap, HAProxy ingress, Argo CD app-of-apps)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
+            </tr>
+            <tr class="bg-washed-green bb b--black-05 bl bw2 b--dark-green">
+              <td class="pv3 ph3 fw7 dark-green">Phase 2.1</td>
+              <td class="pv3 ph3 dark-gray fw6">TLS & Ingress Security (cert-manager, Cloudflare DNS-01, rate limits, restore race)</td>
+              <td class="pv3 ph3 tr nowrap"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white ph3 pv1 br2 f7 fw6 shadow-1 dib">Read Post &rarr;</a></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 dark-gray">Phase 2.2</td>
+              <td class="pv3 ph3 mid-gray">Isolated GitOps Engine (Self-hosted Forgejo server provisioned as code, GitHub mirror)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue ph2.5 pv1 br2 f7 dib">In Progress</span></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 dark-gray">Phase 2.3</td>
+              <td class="pv3 ph3 mid-gray">AWS Remote State & S3 Locking (Terraform S3 backend w/ locking, IAM least-privilege, VPC)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue ph2.5 pv1 br2 f7 dib">In Progress</span></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 gray">Phase 3–8</td>
+              <td class="pv3 ph3 gray">Observability, Synthetic Workloads (k6), Zero-Trust Secrets (SOPS), Cloud-Native Storage, GPU Passthrough</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+            </tr>
+            <tr>
+              <td class="pv3 ph3 fw7 dark-red">Phase 9</td>
+              <td class="pv3 ph3 dark-red fw6">Sim Farm: Gazebo + Argo Workflows (50 seeded parallel runs, deterministic physics, pass/fail report)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-red dark-red ba b--red ph2.5 pv1 br2 f7 fw6 dib">Capstone</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 {{ end }}

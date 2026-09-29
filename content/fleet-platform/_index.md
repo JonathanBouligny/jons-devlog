@@ -9,7 +9,7 @@ cascade:
 
 Every layer—from virtual machine provisioning to cluster networking, GitOps controllers, ingress, and wildcard TLS—is declared in code and version-controlled.
 
-* **Acceptance Test**: The entire platform tears down to empty hypervisors and rebuilds to a fully operational state in **3m17s to 7m19s** via a single automated orchestrator script (`timed-rebuild.sh`).
+* **Cattle, Not Pets**: The real test of reproducibility is a full teardown. The entire platform—VMs, cluster, GitOps engine, ingress, and wildcard TLS—is continuously verified by rebuilding from empty hypervisors via a single automated script to guarantee zero configuration drift.
 * **The Endgame**: A parallel headless **Gazebo robotics simulation farm** driven by Argo Workflows (50 deterministic, seeded runs per commit yielding pass/fail regression reports) backed by dedicated GPU acceleration.
 
 ---

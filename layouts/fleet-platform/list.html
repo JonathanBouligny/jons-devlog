@@ -2,17 +2,33 @@
   <div class="mw8 center ph3 ph4-ns pv4">
     <!-- Hero Header Card -->
     <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
-      <div class="flex-ns items-start-ns justify-between-ns">
-        <div class="w-100 w-70-l">
+      <div class="flex-ns items-start-ns justify-between-ns mb3 border-b b--black-10 pb3">
+        <div class="w-100 w-75-l">
           <h1 class="f2 fw8 dark-gray mt0 mb2">{{ .Title }}</h1>
-          <div class="f5 mid-gray lh-copy">
-            {{ .Content }}
-          </div>
+          <p class="f5 mid-gray mt1 mb0 lh-copy">
+            A fully reproducible, GitOps-managed Kubernetes platform on a 3-node Proxmox cluster (40 cores, 157 GB RAM), scaling to an Argo Workflows + Gazebo robotics simulation farm.
+          </p>
         </div>
-        <div class="w-100 w-28-l mt3 mt0-ns tr-ns">
+        <div class="w-100 w-25-l mt3 mt0-ns tr-ns shrink-0">
           <a href="https://github.com/JonathanBouligny/fleet-platform" target="_blank" rel="noopener" class="no-underline dib bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2.5 br2 shadow-1">
             GitHub Repository &rarr;
           </a>
+        </div>
+      </div>
+
+      <!-- 3 Feature Highlight Boxes -->
+      <div class="flex-ns justify-between gap3 pt2 f6">
+        <div class="w-100 w-33-ns bg-near-white ba b--black-10 br2 pa3 mb2 mb0-ns">
+          <div class="fw7 dark-gray mb1">💻 Source Code</div>
+          <div class="mid-gray lh-copy f7">All IaC, Ansible playbooks, and GitOps manifests are version-controlled on <a href="https://github.com/JonathanBouligny/fleet-platform" target="_blank" rel="noopener" class="blue no-underline hover-dark-blue">GitHub</a>.</div>
+        </div>
+        <div class="w-100 w-33-ns bg-near-white ba b--black-10 br2 pa3 mb2 mb0-ns">
+          <div class="fw7 dark-gray mb1">⚡ Cattle, Not Pets</div>
+          <div class="mid-gray lh-copy f7">Continuously verified zero-drift teardown and rebuild harness from empty hypervisors.</div>
+        </div>
+        <div class="w-100 w-33-ns bg-near-white ba b--black-10 br2 pa3">
+          <div class="fw7 dark-gray mb1">🎯 The Endgame</div>
+          <div class="mid-gray lh-copy f7">Parallel headless Gazebo robotics sim farm driven by Argo Workflows & GPU passthrough.</div>
         </div>
       </div>
     </div>
@@ -21,7 +37,9 @@
     {{ $paginator := .Paginate .Pages 3 }}
     <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
       <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
-        <h2 class="f4 fw7 dark-gray ma0">📝 Published Engineering Logs</h2>
+        <h2 class="f4 fw7 dark-gray ma0 flex items-center gap2">
+          <span>📝 Published Engineering Logs</span>
+        </h2>
         <span class="f6 fw6 gray">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }} ({{ len .Pages }} Total Posts)</span>
       </div>
 
@@ -30,27 +48,27 @@
           <div class="ba b--black-10 br3 pa4 bg-near-white hover-b--black-30 transition">
             <div class="flex justify-between items-center f7 gray mb2">
               <div class="flex items-center gap2">
-                <span class="bg-light-gray dark-gray ph2 py0.5 br1 fw6 font-mono">Phase {{ .Params.phase | default "2.1" }}</span>
-                <span>{{ .Date.Format "January 02, 2006" }}</span>
+                <span class="bg-lightest-blue dark-blue ph2.5 py0.5 br2 fw6 font-mono border b--light-blue">Phase {{ .Params.phase | default "2.1" }}</span>
+                <span class="mid-gray">{{ .Date.Format "January 02, 2006" }}</span>
               </div>
-              <span>{{ .ReadingTime }} min read</span>
+              <span class="mid-gray">{{ .ReadingTime }} min read</span>
             </div>
 
-            <h3 class="f3 fw7 dark-gray mt1 mb2 lh-title">
+            <h3 class="f3 fw7 dark-gray mt2 mb2 lh-title">
               <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
             </h3>
 
-            <p class="f5 mid-gray lh-copy mt0 mb3 measure-wide">
-              {{ .Summary }}
+            <p class="f5 mid-gray lh-copy mt0 mb3">
+              {{ .Params.summary | default (.Summary | plainify | truncate 180) }}
             </p>
 
             <div class="flex justify-between items-center pt3 bt b--black-10">
               <div class="flex flex-wrap gap1 f7">
                 {{ range .Params.tags }}
-                  <span class="bg-white ba b--black-10 mid-gray ph2 py0.5 br1">{{ . }}</span>
+                  <span class="bg-white ba b--black-10 mid-gray ph2.5 py1 br2 f7">{{ . }}</span>
                 {{ end }}
               </div>
-              <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7">Read Full Post &rarr;</a>
+              <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7 flex items-center gap1">Read Full Post &rarr;</a>
             </div>
           </div>
         {{ end }}

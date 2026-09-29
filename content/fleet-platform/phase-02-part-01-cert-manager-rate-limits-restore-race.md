@@ -3,6 +3,8 @@ title: "Phase 2, Part 1: cert-manager, Rate Limits, and the Restore Race"
 date: 2026-09-29
 series: ["fleet-platform"]
 tags: ["cert-manager", "cloudflare", "dns-01", "kubernetes", "letsencrypt", "ansible"]
+phase: "2.1"
+summary: "Handling cert-manager Helm installation, Let's Encrypt DNS-01 wildcard certificates, rate limiting, and bootstrap secret timing races during full teardowns."
 draft: false
 ---
 

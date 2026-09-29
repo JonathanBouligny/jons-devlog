@@ -1,0 +1,131 @@
+{{ define "main" }}
+  <div class="mw8 center ph3 ph4-ns pv4">
+    <!-- Hero Header -->
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <div class="flex-ns items-start-ns justify-between-ns gap3">
+        <div class="w-100 w-70-l">
+          <span class="f7 fw6 ttu tracking-wide dib bg-light-gray gray ba b--black-10 ph2 pv1 br2 mb2">Flagship Engineering Project</span>
+          <h1 class="f2 fw8 dark-gray mt1 mb2">{{ .Title }}</h1>
+          <div class="f5 mid-gray lh-copy">
+            {{ .Content }}
+          </div>
+        </div>
+        <div class="w-100 w-30-l mt3 mt0-ns tr-ns">
+          <a href="https://github.com/JonathanBouligny/fleet-platform" target="_blank" rel="noopener" class="no-underline dib bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2.5 br2 shadow-1">
+            GitHub Repository &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Column Side-by-Side Layout -->
+    <div class="flex-l justify-between gap3">
+
+      <!-- Left Column: Architecture & Build Roadmap (60% width) -->
+      <div class="w-100 w-60-l mb4 mb0-l">
+        <div class="bg-white ba b--black-10 br3 pa4 shadow-1">
+          <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
+            <span>🗺️ Architecture & Build Roadmap</span>
+            <span class="f6 fw4 gray">10 Milestones</span>
+          </h2>
+
+          <div class="overflow-auto">
+            <table class="w-100 collapse f6 tl">
+              <thead>
+                <tr class="bb b--black-20 ttu tracking-wider f7 gray">
+                  <th class="pv2 ph2">Phase</th>
+                  <th class="pv2 ph2">Milestone Topic</th>
+                  <th class="pv2 ph2 tr">Status</th>
+                </tr>
+              </thead>
+              <tbody class="lh-copy">
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 0</td>
+                  <td class="pv2.5 ph2 mid-gray">Cluster Foundation (Proxmox, k3s, cloud-init)</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-washed-yellow dark-amber ba b--gold px2 py1 br2 f7">Backfilling</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 1</td>
+                  <td class="pv2.5 ph2 mid-gray">GitOps & Ingress (Argo CD, HAProxy)</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-washed-yellow dark-amber ba b--gold px2 py1 br2 f7">Backfilling</span></td>
+                </tr>
+                <tr class="bg-washed-green bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 dark-green">Phase 2.1</td>
+                  <td class="pv2.5 ph2 dark-gray fw6">TLS & Ingress Security (cert-manager, Cloudflare)</td>
+                  <td class="pv2.5 ph2 tr"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white px2.5 py1 br2 f7 fw6 shadow-1 dib">Read &rarr;</a></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 2.2</td>
+                  <td class="pv2.5 ph2 mid-gray">Isolated GitOps Engine (Forgejo setup)</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-lightest-blue dark-blue ba b--light-blue px2 py1 br2 f7">In Progress</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 dark-gray">Phase 2.3</td>
+                  <td class="pv2.5 ph2 mid-gray">AWS Remote State & S3 Locking</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-lightest-blue dark-blue ba b--light-blue px2 py1 br2 f7">In Progress</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 gray">Phase 3</td>
+                  <td class="pv2.5 ph2 gray">Platform Observability (Prometheus, Grafana)</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7">Planned</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 gray">Phase 4</td>
+                  <td class="pv2.5 ph2 gray">Synthetic Workloads & k6 Load Generation</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7">Planned</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 gray">Phase 5</td>
+                  <td class="pv2.5 ph2 gray">Zero-Trust Secrets (SOPS, age, OpenBao)</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7">Planned</span></td>
+                </tr>
+                <tr class="bb b--black-05">
+                  <td class="pv2.5 ph2 fw7 gray">Phase 6–8</td>
+                  <td class="pv2.5 ph2 gray">Cloud-Native Storage, GPU Integration, DDS</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-light-gray gray ba b--black-10 px2 py1 br2 f7">Planned</span></td>
+                </tr>
+                <tr>
+                  <td class="pv2.5 ph2 fw7 dark-red">Phase 9</td>
+                  <td class="pv2.5 ph2 dark-red fw6">Sim Farm: Gazebo + Argo Workflows</td>
+                  <td class="pv2.5 ph2 tr"><span class="bg-washed-red dark-red ba b--red px2 py1 br2 f7 fw6">Capstone</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Published Logs (38% width) -->
+      <div class="w-100 w-38-l">
+        <div class="bg-white ba b--black-10 br3 pa4 shadow-1">
+          <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
+            <span>📝 Published Logs</span>
+            <span class="f6 fw6 gray">{{ len .Pages }} Posts</span>
+          </h2>
+
+          <div class="flex flex-column gap3">
+            {{ range .Pages }}
+              <div class="ba b--black-10 br3 pa3 bg-near-white hover-b--black-30 transition">
+                <div class="flex justify-between items-center f7 gray mb2">
+                  <span>{{ .Date.Format "Jan 02, 2006" }}</span>
+                  <span class="bg-light-gray dark-gray px2 py0.5 br1 fw6 font-mono">Phase 2.1</span>
+                </div>
+                <h3 class="f5 fw7 dark-gray mt0 mb2 lh-title">
+                  <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
+                </h3>
+                <p class="f6 mid-gray lh-copy mt0 mb3">
+                  {{ .Summary | truncate 130 }}
+                </p>
+                <div class="flex justify-between items-center pt2 bt b--black-10">
+                  <span class="f7 gray">{{ .ReadingTime }} min read</span>
+                  <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw6">Read Article &rarr;</a>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{{ end }}

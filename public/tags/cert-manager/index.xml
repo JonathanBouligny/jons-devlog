@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Cert-Manager on Jon&#39;s Devlog</title>
+		<link>http://localhost:1313/tags/cert-manager/</link>
+		<description>Recent content in Cert-Manager on Jon&#39;s Devlog</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/cert-manager/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Phase 2, Part 1: cert-manager, Rate Limits, and the Restore Race</title>
+				<link>http://localhost:1313/fleet-platform/phase-02-part-01-cert-manager-rate-limits-restore-race/</link>
+				<pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/fleet-platform/phase-02-part-01-cert-manager-rate-limits-restore-race/</guid>
+				<description>&lt;h2 id=&#34;cert-manager&#34;&gt;cert-manager&lt;/h2&gt;&#xA;&lt;p&gt;Setting up cert-manager was pretty easy with a Helm chart. I did spend a lot of time on this step but it was mostly googling and figuring out what to do about bootstrap secrets which I detail below. The most interesting thing I learned was part of the values file, specifically &lt;code&gt;installCRDs&lt;/code&gt; (or &lt;code&gt;crds.enabled&lt;/code&gt;, depending on chart version). CRDs, Custom Resource Definitions, are objects that teach the Kubernetes API server about new kinds of resources, like &lt;code&gt;Certificate&lt;/code&gt; and &lt;code&gt;ClusterIssuer&lt;/code&gt;. They&amp;rsquo;re not backed by Go directly, they&amp;rsquo;re schema definitions, and a controller (cert-manager&amp;rsquo;s own pod, running Go code) is what actually watches for objects of that kind and acts on them. So a CRD without its controller running is just an inert schema. The controller is the operator, the CRD is the vocabulary it teaches the cluster.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,13 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = "Jon's Devlog"
+theme = 'ananke'
+
+[params]
+  mainSections = ['fleet-platform']
+
+[menus]
+  [[menus.main]]
+    name = 'Fleet Platform'
+    pageRef = '/fleet-platform'
+    weight = 10

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/tags/ansible/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cert-manager/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/cloudflare/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/dns-01/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/fleet-platform/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/kubernetes/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/letsencrypt/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/fleet-platform/phase-02-part-01-cert-manager-rate-limits-restore-race/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url>
+</urlset>

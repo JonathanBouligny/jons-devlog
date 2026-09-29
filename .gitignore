@@ -1,0 +1,20 @@
+# Hugo build output (Cloudflare Pages builds this fresh)
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Cache directories
+.cache/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local environment variables / secrets
+.env
+.env.*
+*.local

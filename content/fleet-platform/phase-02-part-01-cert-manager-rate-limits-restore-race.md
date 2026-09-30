@@ -10,6 +10,8 @@ draft: false
 
 > **A note on order:** I started this devlog partway through, around the cert-manager and ingress work, so the posts aren't showing up in the order I actually built things. Phase 0 (the Proxmox/Terraform/Ansible foundation and the k3s bootstrap) and Phase 1 (Argo CD and ingress) came first — I'm backfilling those writeups now. The phase numbers in the titles are the real order to read them in.
 
+The full platform is on GitHub: [github.com/JonathanBouligny/fleet-platform](https://github.com/JonathanBouligny/fleet-platform). This post covers the cert-manager piece.
+
 ## cert-manager
 
 Setting up cert-manager was pretty easy with a Helm chart. I did spend a lot of time on this step but it was mostly googling and figuring out what to do about bootstrap secrets which I detail below. The most interesting thing I learned was part of the values file, specifically `installCRDs` (or `crds.enabled`, depending on chart version). CRDs, Custom Resource Definitions, are objects that teach the Kubernetes API server about new kinds of resources, like `Certificate` and `ClusterIssuer`. They're not backed by Go directly, they're schema definitions, and a controller (cert-manager's own pod, running Go code) is what actually watches for objects of that kind and acts on them. So a CRD without its controller running is just an inert schema. The controller is the operator, the CRD is the vocabulary it teaches the cluster.

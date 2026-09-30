@@ -5,6 +5,7 @@ theme = 'ananke'
 
 [params]
   mainSections = ['fleet-platform']
+  images = ['images/og-default.png']
 
 [menus]
   [[menus.main]]

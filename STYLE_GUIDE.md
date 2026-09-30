@@ -97,3 +97,12 @@ When cross-posting to **dev.to**, **Medium**, or **LinkedIn Articles**:
   canonical_url: https://bouligny.dev/fleet-platform/phase-xx-part-yy-slug/
   ```
   *Why*: This signals to Google search algorithms that `bouligny.dev` is the original authority, driving search ranking and domain reputation to your personal site rather than the third-party platform.
+
+---
+
+## 7. Future Note: Multi-Post Phases & Roadmap Navigation
+
+* **Multiple Posts per Phase**: We may author more than one post per phase (e.g., individual posts per node, multi-part deep dives).
+* **Roadmap Button Transition**: When a phase contains more than one article, the single `Read Post →` button on the `/fleet-platform/` roadmap table should change into a **`Go to Phase Posts →`** (or `View Phase Posts →`) button.
+* **Sub-folder / Sub-index Organization**: If a phase expands into multiple posts, consider organizing them inside a sub-folder under `content/fleet-platform/` (e.g. `content/fleet-platform/phase-02/` with an `_index.md` or dedicated listing template) so readers land on a clean phase-specific index page before diving into individual posts.
+

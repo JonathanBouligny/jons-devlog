@@ -1,4 +1,13 @@
 {{ define "main" }}
+  <style>
+    .status-pill {
+      display: inline-block;
+      padding: 4px 11px;
+      line-height: 1.25;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+  </style>
   <div class="mw8 center ph3 ph4-ns pv4">
     <!-- Hero Header Card -->
     <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
@@ -49,7 +58,7 @@
           <div class="ba b--black-10 br3 pa4 bg-near-white hover-b--black-30 transition">
             <div class="flex justify-between items-center f7 gray mb2">
               <div class="flex items-center">
-                <span class="bg-lightest-blue dark-blue ph2.5 py0.5 br2 fw6 font-mono border b--light-blue mr3">Phase {{ .Params.phase | default "2" }}</span>
+                <span class="bg-lightest-blue dark-blue ba b--light-blue mr3 fw6 font-mono status-pill">Phase {{ .Params.phase | default "2" }}</span>
                 <span class="mid-gray">{{ .Date.Format "January 02, 2006" }}</span>
               </div>
               <span class="mid-gray">{{ .ReadingTime }} min read</span>
@@ -66,7 +75,7 @@
             <div class="flex justify-between items-center pt3 bt b--black-10">
               <div class="flex flex-wrap f7">
                 {{ range .Params.tags }}
-                  <span class="bg-white ba b--black-10 mid-gray ph2.5 py1 br2 f7 mr2 mb1">{{ . }}</span>
+                  <span class="bg-white ba b--black-10 mid-gray ph2 pv1 br2 f7 mr2 mb1 dib">{{ . }}</span>
                 {{ end }}
               </div>
               <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7 flex items-center gap1 shrink-0">Read Full Post &rarr;</a>
@@ -124,48 +133,48 @@
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 0</td>
               <td class="pv3 ph3 mid-gray">Hypervisor & Node Foundation (Proxmox VE 9, cloud-init templates, 2-node k3s bootstrap)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold status-pill">Backfilling</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 1</td>
               <td class="pv3 ph3 mid-gray">GitOps Control Plane (Argo CD root App-of-Apps, HAProxy Ingress controller)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold status-pill">Backfilling</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 2</td>
               <td class="pv3 ph3 mid-gray">Automated TLS & Wildcard Ingress (cert-manager, Cloudflare DNS-01, rate limit mitigation)</td>
               <!-- FUTURE NOTE: If a phase has multiple posts, change "Read Post →" to "Go to Phase Posts →" linking to sub-folder/index in content/fleet-platform/ -->
-              <td class="pv3 ph3 tr nowrap"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white ph3 pv1 br2 f7 fw6 shadow-1 dib hover-bg-black">Read Post &rarr;</a></td>
+              <td class="pv3 ph3 tr nowrap"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white status-pill fw6 shadow-1 hover-bg-black">Read Post &rarr;</a></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 3</td>
               <td class="pv3 ph3 mid-gray">Isolated GitOps Source Control (Self-hosted Forgejo server provisioned as code, GitHub mirror)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-green dark-green ba b--dark-green ph2.5 pv1 br2 f7 dib">Complete</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-washed-green dark-green ba b--dark-green status-pill">Complete</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 4</td>
               <td class="pv3 ph3 mid-gray">AWS Cloud Footprint (Terraform S3 remote state w/ locking, IAM least-privilege, VPC)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue ph2.5 pv1 br2 f7 dib">In Progress</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue status-pill">In Progress</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 gray">Phase 5</td>
               <td class="pv3 ph3 gray">Platform Observability (kube-prometheus-stack via Argo, Grafana dashboards, ServiceMonitors)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 status-pill">Planned</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 gray">Phase 6</td>
               <td class="pv3 ph3 gray">Zero-Trust Secrets & Storage (SOPS + age encryption, OpenBao / External Secrets Operator)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 status-pill">Planned</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 gray">Phase 7</td>
               <td class="pv3 ph3 gray">GPU Node Integration (RTX 3090 PCIe passthrough, container toolkit, headless Vulkan/EGL)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 status-pill">Planned</span></td>
             </tr>
             <tr>
               <td class="pv3 ph3 fw7 dark-gray">Phase 8</td>
               <td class="pv3 ph3 mid-gray">Sim Farm: Gazebo + Argo Workflows (50 seeded parallel runs, deterministic physics, pass/fail report)</td>
-              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Target Goal</span></td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 status-pill fw6">Target Goal</span></td>
             </tr>
           </tbody>
         </table>

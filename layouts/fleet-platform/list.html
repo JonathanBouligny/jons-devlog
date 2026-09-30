@@ -49,7 +49,7 @@
           <div class="ba b--black-10 br3 pa4 bg-near-white hover-b--black-30 transition">
             <div class="flex justify-between items-center f7 gray mb2">
               <div class="flex items-center">
-                <span class="bg-lightest-blue dark-blue ph2.5 py0.5 br2 fw6 font-mono border b--light-blue mr3">Phase {{ .Params.phase | default "2.1" }}</span>
+                <span class="bg-lightest-blue dark-blue ph2.5 py0.5 br2 fw6 font-mono border b--light-blue mr3">Phase {{ .Params.phase | default "2" }}</span>
                 <span class="mid-gray">{{ .Date.Format "January 02, 2006" }}</span>
               </div>
               <span class="mid-gray">{{ .ReadingTime }} min read</span>
@@ -104,11 +104,11 @@
       {{ end }}
     </div>
 
-    <!-- Architecture & Build Roadmap (Full Width Table) -->
+    <!-- Architecture & Build Roadmap (Idea 1: Clean Integers 0 through 8) -->
     <div class="bg-white ba b--black-10 br3 pa4 shadow-1">
       <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 flex items-center justify-between">
         <span>🗺️ Architecture & Build Roadmap</span>
-        <span class="f6 fw4 gray">10 Milestones</span>
+        <span class="f6 fw4 gray">9 Milestones</span>
       </h2>
 
       <div class="overflow-auto">
@@ -123,36 +123,46 @@
           <tbody class="lh-copy">
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 0</td>
-              <td class="pv3 ph3 mid-gray">Cluster Foundation (Proxmox hypervisors, 2-node k3s bootstrap, cloud-init templates)</td>
+              <td class="pv3 ph3 mid-gray">Hypervisor & Node Foundation (Proxmox VE 9, cloud-init templates, 2-node k3s bootstrap)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
             </tr>
             <tr class="bb b--black-05">
               <td class="pv3 ph3 fw7 dark-gray">Phase 1</td>
-              <td class="pv3 ph3 mid-gray">GitOps & Ingress (Ansible AAP bootstrap, HAProxy ingress, Argo CD app-of-apps)</td>
+              <td class="pv3 ph3 mid-gray">GitOps Control Plane (Argo CD root App-of-Apps, HAProxy Ingress controller)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-washed-yellow dark-amber ba b--gold ph2.5 pv1 br2 f7 dib">Backfilling</span></td>
             </tr>
             <tr class="bg-washed-green bb b--black-05 bl bw2 b--dark-green">
-              <td class="pv3 ph3 fw7 dark-green">Phase 2.1</td>
-              <td class="pv3 ph3 dark-gray fw6">TLS & Ingress Security (cert-manager, Cloudflare DNS-01, rate limits, restore race)</td>
+              <td class="pv3 ph3 fw7 dark-green">Phase 2</td>
+              <td class="pv3 ph3 dark-gray fw6">Automated TLS & Wildcard Ingress (cert-manager, Cloudflare DNS-01, rate limit mitigation)</td>
               <td class="pv3 ph3 tr nowrap"><a href="./phase-02-part-01-cert-manager-rate-limits-restore-race/" class="no-underline bg-dark-green white ph3 pv1 br2 f7 fw6 shadow-1 dib">Read Post &rarr;</a></td>
             </tr>
             <tr class="bb b--black-05">
-              <td class="pv3 ph3 fw7 dark-gray">Phase 2.2</td>
-              <td class="pv3 ph3 mid-gray">Isolated GitOps Engine (Self-hosted Forgejo server provisioned as code, GitHub mirror)</td>
+              <td class="pv3 ph3 fw7 dark-gray">Phase 3</td>
+              <td class="pv3 ph3 mid-gray">Isolated GitOps Source Control (Self-hosted Forgejo server provisioned as code, GitHub mirror)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue ph2.5 pv1 br2 f7 dib">In Progress</span></td>
             </tr>
             <tr class="bb b--black-05">
-              <td class="pv3 ph3 fw7 dark-gray">Phase 2.3</td>
-              <td class="pv3 ph3 mid-gray">AWS Remote State & S3 Locking (Terraform S3 backend w/ locking, IAM least-privilege, VPC)</td>
+              <td class="pv3 ph3 fw7 dark-gray">Phase 4</td>
+              <td class="pv3 ph3 mid-gray">AWS Cloud Footprint (Terraform S3 remote state w/ locking, IAM least-privilege, VPC)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-lightest-blue dark-blue ba b--light-blue ph2.5 pv1 br2 f7 dib">In Progress</span></td>
             </tr>
             <tr class="bb b--black-05">
-              <td class="pv3 ph3 fw7 gray">Phase 3–8</td>
-              <td class="pv3 ph3 gray">Observability, Synthetic Workloads (k6), Zero-Trust Secrets (SOPS), Cloud-Native Storage, GPU Passthrough</td>
+              <td class="pv3 ph3 fw7 gray">Phase 5</td>
+              <td class="pv3 ph3 gray">Platform Observability (kube-prometheus-stack via Argo, Grafana dashboards, ServiceMonitors)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 gray">Phase 6</td>
+              <td class="pv3 ph3 gray">Zero-Trust Secrets & Storage (SOPS + age encryption, OpenBao / External Secrets Operator)</td>
+              <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
+            </tr>
+            <tr class="bb b--black-05">
+              <td class="pv3 ph3 fw7 gray">Phase 7</td>
+              <td class="pv3 ph3 gray">GPU Node Integration (RTX 3090 PCIe passthrough, container toolkit, headless Vulkan/EGL)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Planned</span></td>
             </tr>
             <tr>
-              <td class="pv3 ph3 fw7 dark-gray">Phase 9</td>
+              <td class="pv3 ph3 fw7 dark-gray">Phase 8</td>
               <td class="pv3 ph3 mid-gray">Sim Farm: Gazebo + Argo Workflows (50 seeded parallel runs, deterministic physics, pass/fail report)</td>
               <td class="pv3 ph3 tr nowrap"><span class="bg-light-gray gray ba b--black-10 ph2.5 pv1 br2 f7 dib">Target Goal</span></td>
             </tr>

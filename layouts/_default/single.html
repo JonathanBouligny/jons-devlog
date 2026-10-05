@@ -1,0 +1,113 @@
+{{ define "header" }}
+  {{ partials.Include "page-header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+  {{- $related_content := .Site.RegularPages.Related . -}}
+  {{- $needs_aside := or .Params.toc $related_content -}}
+  {{ $page := .}}
+  {{ $section := .Site.GetPage "section" .Section }}
+
+  {{- $post_class := "" -}}
+  {{- with .File -}}
+    {{- $post_class = printf "page-%s" .ContentBaseName -}}
+  {{- end -}}
+
+  <article class="{{ $post_class }} flex-l {{ if $needs_aside }}mw8{{ else }}mw7{{ end }} center ph3 ph4-ns flex-wrap justify-between">
+    <header class="mt4 w-100">
+      {{- partials.Include "hook.html" ( dict "hook" "article/section-link"  "context" . ) -}}
+      {{- partials.IncludeCached "social/share.html" . . -}}
+      
+      {{ with .Params.phase }}
+        <div class="mt3 mb2">
+          <span class="bg-lightest-blue dark-blue ba b--light-blue fw6 font-mono status-pill">Phase {{ . }}</span>
+        </div>
+      {{ end }}
+
+      <h1 class="f1 fw8 dark-gray mt2 mb2 lh-title">
+        {{- .Title -}}
+      </h1>
+      
+      <div class="flex items-center f6 gray mv3">
+        <time class="mid-gray" {{ fmt.Printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safe.HTMLAttr }}>
+          {{- .Date | time.Format "January 02, 2006" -}}
+        </time>
+        <span class="mh2">&bull;</span>
+        <span class="mid-gray">{{ .ReadingTime }} min read ({{ .WordCount }} words)</span>
+      </div>
+    </header>
+
+    <div class="nested-copy-line-height lh-copy f4 nested-links dark-gray {{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pl4-l" "pr4-l" }} {{ if $needs_aside }}w-two-thirds-l{{ else }}w-100-l{{ end }}">
+      {{- partials.Include "hook.html" (dict "hook" "content-before" "context" .) -}}
+      {{- .Content -}}
+      {{- partials.Include "hook.html" (dict "hook" "content-after" "context" .) -}}
+      
+      <!-- Tags -->
+      {{ with .Params.tags }}
+        <div class="mt4 pt3 bt b--black-10 flex flex-wrap items-center">
+          <span class="f6 fw6 gray mr2 mb1">Tags:</span>
+          {{ range . }}
+            <span class="bg-near-white ba b--black-10 mid-gray ph2 pv1 br2 f7 mr2 mb1 dib">{{ . }}</span>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <!-- Dynamic Series & Chronological Post Navigation (Only on series/section posts) -->
+      {{ if or .Params.series (ne .Section "") }}
+      <nav class="ba b--black-10 br3 pa3 pa4-ns bg-near-white shadow-1 mv5">
+        <div class="f7 ttu tracked fw7 mid-gray mb3 tc flex items-center justify-center gap2">
+          <span>Part of Series:</span>
+          <a href="{{ with .CurrentSection }}{{ .RelPermalink }}{{ else }}/fleet-platform/{{ end }}" class="blue no-underline hover-dark-blue fw7">
+            {{ with .CurrentSection }}{{ .Title }}{{ else }}Fleet Platform{{ end }}
+          </a>
+        </div>
+        <div class="flex flex-column flex-row-ns justify-between items-stretch gap3">
+          <!-- Previous Post -->
+          <div class="w-100 w-33-ns mb2 mb0-ns flex flex-column justify-center">
+            {{ with .PrevInSection }}
+              <a href="{{ .RelPermalink }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between">
+                <span class="f7 fw7 db blue mb1">&larr; Previous Post</span>
+                <span class="f6 fw6 dark-gray db lh-title">{{ .Title }}</span>
+              </a>
+            {{ else }}
+              <div class="ba b--black-05 br2 pa3 bg-white-50 gray o-60 h-100 flex flex-column justify-center">
+                <span class="f7 fw6 db mb1">&larr; Previous</span>
+                <span class="f6 db">First post in series</span>
+              </div>
+            {{ end }}
+          </div>
+
+          <!-- Series Roadmap Hub -->
+          <div class="w-100 w-33-ns mb2 mb0-ns flex items-center justify-center">
+            <a href="{{ with .CurrentSection }}{{ .RelPermalink }}{{ else }}/fleet-platform/{{ end }}" class="no-underline inline-flex items-center justify-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1 tc w-100 h-100">
+              🗺️ Series Roadmap &rarr;
+            </a>
+          </div>
+
+          <!-- Next Post -->
+          <div class="w-100 w-33-ns flex flex-column justify-center tr-ns">
+            {{ with .NextInSection }}
+              <a href="{{ .RelPermalink }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between">
+                <span class="f7 fw7 db blue mb1">Next Post &rarr;</span>
+                <span class="f6 fw6 dark-gray db lh-title">{{ .Title }}</span>
+              </a>
+            {{ else }}
+              <div class="ba b--black-05 br2 pa3 bg-white-50 gray o-60 h-100 flex flex-column justify-center">
+                <span class="f7 fw6 db mb1">Next &rarr;</span>
+                <span class="f6 db">Latest post published</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </nav>
+      {{ end }}
+
+    </div>
+    {{- if $needs_aside -}}
+    <aside class="w-30-l mt6-l">
+      {{- partials.Include "menu-contextual.html" . -}}
+    </aside>
+    {{- end -}}
+
+  </article>
+{{ end }}

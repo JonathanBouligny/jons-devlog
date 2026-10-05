@@ -8,6 +8,16 @@ theme = 'ananke'
   images = ['images/og-default.png']
   favicon = 'favicon.ico'
 
+[params.ananke.social.follow]
+  networks = ["github", "linkedin"]
+
+[params.ananke.social.github]
+  username = "JonathanBouligny"
+
+[params.ananke.social.linkedin]
+  username = "jonathan-j-bouligny"
+  profilelink = "https://www.linkedin.com/in/jonathan-j-bouligny"
+
 [menus]
   [[menus.main]]
     name = 'Fleet Platform'

@@ -2,3 +2,102 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<style>
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  .status-pill {
+    display: inline-block;
+    padding: 4px 11px;
+    line-height: 1.25;
+    border-radius: 4px;
+    font-size: 0.75rem;
+  }
+
+  /* Code Blocks */
+  pre {
+    background-color: #0b0f19 !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 8px !important;
+    padding: 1.25rem !important;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  pre code {
+    font-family: var(--font-mono) !important;
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: #e2e8f0 !important;
+  }
+
+  :not(pre) > code {
+    font-family: var(--font-mono) !important;
+    font-size: 0.875em !important;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Blockquotes */
+  article blockquote, .lh-copy blockquote {
+    border-left: 4px solid #38bdf8 !important;
+    background: #f8fafc !important;
+    padding: 1rem 1.25rem !important;
+    border-radius: 0 8px 8px 0;
+    margin: 1.75rem 0 !important;
+    color: #334155 !important;
+    font-style: normal !important;
+  }
+
+  /* Headings & Post Content */
+  article h2 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+
+  article h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  article p {
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  article hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2.5rem 0;
+  }
+
+  /* Smooth Transitions */
+  .transition {
+    transition: all 0.15s ease-in-out;
+  }
+
+  .hover-b--blue:hover {
+    border-color: #357edd;
+  }
+</style>

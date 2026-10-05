@@ -8,7 +8,7 @@ summary: "Handling cert-manager Helm installation, Let's Encrypt DNS-01 wildcard
 draft: false
 ---
 
-> **A note on order:** I started this devlog partway through, around the cert-manager and ingress work, so the posts aren't showing up in the order I actually built things. Phase 0 (the Proxmox/Terraform/Ansible foundation and the k3s bootstrap) and Phase 1 (Argo CD and ingress) came first — I'm backfilling those writeups now. The phase numbers in the titles are the real order to read them in.
+> **A note on order:** I started this devlog partway through, around the cert-manager and ingress work, so the posts aren't showing up in the order I actually built things. Phase 0 (the Proxmox/Terraform/Ansible foundation and the k3s bootstrap) and Phase 1 (Argo CD and ingress) came first, and I'm backfilling those writeups now. The phase numbers in the titles are the real order to read them in.
 
 The full platform is on GitHub: [github.com/JonathanBouligny/fleet-platform](https://github.com/JonathanBouligny/fleet-platform). This post covers the cert-manager piece.
 

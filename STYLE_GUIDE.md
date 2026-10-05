@@ -106,3 +106,11 @@ When cross-posting to **dev.to**, **Medium**, or **LinkedIn Articles**:
 * **Roadmap Button Transition**: When a phase contains more than one article, the single `Read Post →` button on the `/fleet-platform/` roadmap table should change into a **`Go to Phase Posts →`** (or `View Phase Posts →`) button.
 * **Sub-folder / Sub-index Organization**: If a phase expands into multiple posts, consider organizing them inside a sub-folder under `content/fleet-platform/` (e.g. `content/fleet-platform/phase-02/` with an `_index.md` or dedicated listing template) so readers land on a clean phase-specific index page before diving into individual posts.
 
+---
+
+## 8. Punctuation Standard: No Em Dashes
+
+* **Strictly Prohibit Em Dashes (`—` / `--`)**: Do not use em dashes in post prose. Modern AI models heavily overuse em dashes to stitch clauses together, creating a distinct, repetitive pattern. Break thoughts into separate, clear sentences or use standard commas with conjunctions (`and`, `but`, `which`).
+* **Colons (`:`) in Technical Writing**: Natural colons are completely acceptable when introducing code blocks, configuration manifests, or CLI outputs. Avoid mechanical AI bullet formats (such as formulaic `Problem: ...`, `Solution: ...` repetitive labeling).
+
+

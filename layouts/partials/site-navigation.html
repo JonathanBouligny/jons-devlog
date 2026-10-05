@@ -1,0 +1,31 @@
+<nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex items-center justify-between mw8 center">
+    <!-- Site Brand Title -->
+    <a href="{{ .Site.Home.RelPermalink }}" class="f4 fw7 white hover-white-90 dib no-underline flex items-center">
+      <span class="mr2 font-mono blue fw7">&gt;_</span>
+      <span>{{ .Site.Title }}</span>
+    </a>
+
+    <!-- Nav Items & Social Icons -->
+    <div class="flex items-center">
+      {{ partials.Include "i18nlist.html" . }}
+      {{ if .Site.Menus.main }}
+        <ul class="pl0 mv0 flex items-center list">
+          {{ range .Site.Menus.main }}
+          <li class="mr3 mr4-ns">
+            <a class="f6 fw6 white-80 hover-white no-underline transition" href="{{ .URL }}" title="{{ .Name }}">
+              {{ .Name }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+
+      <!-- Subtle Sleek Vertical Divider -->
+      <div class="mh2 mh3-ns dn dib-ns" style="width: 1px; height: 16px; background: rgba(255, 255, 255, 0.25);"></div>
+
+      <!-- Social Follow Icons -->
+      {{ partials.IncludeCached "social/follow.html" . }}
+    </div>
+  </div>
+</nav>

@@ -20,10 +20,10 @@ theme = 'ananke'
 
 [menus]
   [[menus.main]]
-    name = 'Fleet Platform'
-    pageRef = '/fleet-platform'
-    weight = 10
-  [[menus.main]]
     name = 'About'
     pageRef = '/about'
+    weight = 10
+  [[menus.main]]
+    name = 'Fleet Platform'
+    pageRef = '/fleet-platform'
     weight = 20

@@ -108,9 +108,9 @@ When cross-posting to **dev.to**, **Medium**, or **LinkedIn Articles**:
 
 ---
 
-## 8. Punctuation Standard: No Em Dashes
+## 8. Punctuation Standard: Clean Editorial Phrasing
 
-* **Strictly Prohibit Em Dashes (`—` / `--`)**: Do not use em dashes in post prose. Modern AI models heavily overuse em dashes to stitch clauses together, creating a distinct, repetitive pattern. Break thoughts into separate, clear sentences or use standard commas with conjunctions (`and`, `but`, `which`).
-* **Colons (`:`) in Technical Writing**: Natural colons are completely acceptable when introducing code blocks, configuration manifests, or CLI outputs. Avoid mechanical AI bullet formats (such as formulaic `Problem: ...`, `Solution: ...` repetitive labeling).
+* **No Em Dashes (`—` / `--`)**: Prohibit em dashes in post prose. Break thoughts into separate, clear sentences or use standard commas with conjunctions (`and`, `but`, `which`).
+* **Colons (`:`) in Technical Writing**: Natural colons are completely acceptable when introducing code blocks, configuration manifests, or CLI outputs. Avoid formulaic or repetitive bullet labeling patterns.
 
 

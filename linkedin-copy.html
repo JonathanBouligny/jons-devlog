@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkedIn Formatted Article Copy Helper</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      background: #f8fafc;
+    }
+    .banner {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: #0f172a;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .btn {
+      background: #0a66c2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn:hover {
+      background: #004182;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    h2 {
+      font-size: 24px;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: #0f172a;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+    p {
+      margin: 16px 0;
+      font-size: 16px;
+      color: #334155;
+    }
+    pre {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #0f172a;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #cbd5e1;
+      margin: 32px 0;
+    }
+    a {
+      color: #0a66c2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div>
+      <strong style="font-size: 16px;">LinkedIn Article Formatter</strong><br>
+      <span style="font-size: 13px; color: #94a3b8;">Click the button, then switch to LinkedIn and hit Ctrl+V</span>
+    </div>
+    <button class="btn" onclick="copyRichText()">📋 Copy Formatted Article</button>
+  </div>
+
+  <div class="card" id="article-content">
+    <p>My original infrastructure is three bare-metal Proxmox machines clustered together. The clustering just makes administration a bit easier. Those run the VMs that hold my k3s nodes and other lab systems like an Ansible Automation Platform. All of it was hand-configured.</p>
+
+    <p>My goal is to have the foundation infrastructure come up from code too, the same way the cluster does, so I can add machines or spin everything down and back up without clicking through a UI. It's also a good exercise on its own. This piece is the DNS setup using Technitium.</p>
+
+    <hr>
+
+    <h2>Why an LXC Container for DNS</h2>
+
+    <p>The plan for DNS is to spin up an LXC container, provision it, and back it up. I chose an LXC container because it's lighter than a full VM while keeping the features I care about.</p>
+
+    <p>The reason it's not just the containerized (Docker) version of Technitium: in that version the logs show every request coming from the bridge, so you can't tell who actually asked. A real OS install fixes that, but I don't want to hand a whole VM's worth of resources to one small service.</p>
+
+    <p>I also don't want all my services on one VM. If that VM goes down, that's one big blast surface, so I'd rather have a bunch of small machines. LXC containers act like smaller VMs for services you treat like pets instead of cattle. I can run them on Proxmox, on bare metal with systemd-nspawn, or on another hypervisor through Incus. I still get backups, and if I ever need to pull a service out, the migration path is easier because the backup is just the filesystem, so I can mount it somewhere else later.</p>
+
+    <hr>
+
+    <h2>Centralizing the Common Values</h2>
+
+    <p>I worked in a strange order, doing things as they came to me. One was centralizing the important values, so I made a common-outputs folder that just exports the things every foundation system needs.</p>
+
+    <p>The thing that pushed me to it was upstream DNS versus the DNS server. Most machines need to use the dns_server, and then the DNS server itself needs to use the upstream_dns_server. Keeping those in one place beat redefining them in every repo.</p>
+
+    <pre><code>output "proxmox_endpoint"    { value = "https://10.0.0.10:8006/" }
+output "gateway"             { value = "10.0.0.1" }
+output "dns_server"          { value = "10.0.0.31" }   # Technitium, guests resolve here
+output "upstream_dns_server" { value = "10.0.0.1" }    # router, what the resolver forwards to
+output "provider_ssh_user"   { value = "terraform" }
+output "machine_ssh_user"    { value = "jon" }
+output "ssh_keys"            { value = [trimspace(file("~/.ssh/id_ed25519.pub"))] }</code></pre>
+
+    <hr>
+
+    <h2>The Code I Kept Copying</h2>
+
+    <p>I wanted to stop copying the same block of Terraform around. This resource has spun up VMs across at least three of my repos, probably more, and every copy was one more place to fix when something changed. Here's the block that was living in every repo, reaching into a common module for the shared values:</p>
+
+    <pre><code>resource "proxmox_virtual_environment_vm" "vms" {
+  for_each  = local.vms
+  name      = each.key
+  node_name = each.value.node_name
+
+  clone { vm_id = each.value.template_vm_id }
+  agent { enabled = true }
+  cpu    { cores = each.value.cores }
+  memory { dedicated = each.value.memory }
+
+  initialization {
+    dns { servers = [module.common.dns_server] }
+    ip_config {
+      ipv4 {
+        address = each.value.ip_address
+        gateway = module.common.gateway
+      }
+    }
+    user_account {
+      username = "jon"
+      keys     = [trimspace(file("~/.ssh/id_ed25519.pub"))]
+    }
+  }
+
+  disk {
+    interface = each.value.disk.interface
+    size      = each.value.disk.size
+  }
+}</code></pre>
+
+    <hr>
+
+    <h2>Making It a Module</h2>
+
+    <p>A module is just a few files: main.tf for the resource, variables.tf for the inputs, outputs.tf for what it returns, a versions.tf to pin the provider, and a README. The resource itself barely changes. Every hardcoded or module.common.* value becomes a var.*, so the block stops knowing anything about my specific setup.</p>
+
+    <p>Then the inputs those vars come from. ssh_user and gateway get defaults so a caller only overrides them when they differ. dns_server has no default on purpose, because the whole point was that some machines get the resolver and the resolver gets upstream, so the caller must say which. input_vms is the typed shape of the machine map:</p>
+
+    <pre><code>variable "dns_server" {
+  type        = string
+  description = "the dns server to use, can be upstream or downstream"
+}
+
+variable "input_vms" {
+  type = map(object({
+    node_name      = string
+    template_vm_id = number
+    cores          = number
+    memory         = number
+    ip_address     = string
+    disk = object({
+      interface = string
+      size      = number
+    })
+  }))
+  description = "The list of vms to be created"
+}</code></pre>
+
+    <p>One output change worth calling out: the old version grabbed ipv4_addresses[1][0], which assumes the second NIC entry is the real one and the first is loopback. That's fragile. I changed it to filter loopback out explicitly instead of trusting the index:</p>
+
+    <pre><code>output "vm_ipv4_address" {
+  value = {
+    for k, v in proxmox_virtual_environment_vm.vms :
+    k => [for addr in flatten(v.ipv4_addresses) : addr if addr != "127.0.0.1"][0]
+  }
+}</code></pre>
+
+    <hr>
+
+    <h2>The LXC Version</h2>
+
+    <p>Once the VM module existed, the container version was only a few changes off it. The resource type changes to proxmox_virtual_environment_container, a hostname shows up, there's no agent block, and the disk loses its interface.</p>
+
+    <p>The input_containers variable is the same shape as input_vms minus the disk interface, and the output reads .ipv4 off the container instead of filtering the VM's address list:</p>
+
+    <pre><code>output "container_ipv4_address" {
+  value = { for k, v in proxmox_virtual_environment_container.containers : k => v.ipv4 }
+}</code></pre>
+
+    <hr>
+
+    <h2>Using the Module in the Foundation Repo</h2>
+
+    <p>With the module written, each foundation system just describes its machines and calls it. Here's the DNS one, 2-dns/terraform/technitium.tf. It pulls shared values from common, defines the one VM, and hands it to the module:</p>
+
+    <pre><code>module "common" {
+  source = "../../common-outputs/"
+}
+
+locals {
+  vms = {
+    technitium = {
+      node_name      = "nibbler"
+      template_vm_id = 9000
+      cores          = 4
+      memory         = 8192
+      ip_address     = "10.0.0.31/24"
+      disk = {
+        interface = "scsi0"
+        size      = 60
+      }
+    }
+  }
+}
+
+module "proxmox_create_vms" {
+  source = "../../terraform-common/proxmox_create_vms"
+
+  input_vms  = local.vms
+  ssh_user   = module.common.machine_ssh_user
+  ssh_keys   = module.common.ssh_keys
+  dns_server = module.common.upstream_dns_server
+  gateway    = module.common.gateway
+}
+
+output "vm_ipv4_address" {
+  value = module.proxmox_create_vms.vm_ipv4_address
+}</code></pre>
+
+    <p>The provider block is tiny too, since it also reads from common:</p>
+
+    <pre><code>provider "proxmox" {
+  endpoint = module.common.proxmox_endpoint
+  insecure = true
+
+  ssh {
+    agent    = true
+    username = module.common.provider_ssh_user
+  }
+}</code></pre>
+
+    <p>The Forgejo system (3-git/terraform/forgejo.tf) is the same file with a different machine map, pointing at the same module. That's the whole payoff. Adding a new foundation service is now a locals block and a module call, not another copy of the resource.</p>
+
+    <hr>
+
+    <h2>Why Git Subtree Instead of a Submodule or a Registry</h2>
+
+    <p>One decision I made about how the module actually lives in the foundation repo: the module code is its own thing, but I pulled it into the foundation repo with git subtree rather than referencing it as a submodule or a remote source.</p>
+
+    <p>The reason is disaster recovery. This foundation repo, state included, is going on a USB stick as a recovery copy. It also lives in Forgejo, but I want to be able to rebuild foundation infra from just the USB, with nothing else reachable. A submodule or a remote module source would mean the USB copy is incomplete without pulling from an external network. A subtree copies the module's files directly into this repo, so the single repository on the stick has everything needed to bootstrap.</p>
+
+    <hr>
+
+    <p><em>Originally published on my engineering devlog: <a href="https://bouligny.dev/fleet-platform/phase-00-part-01-turning-copy-pasted-terraform-into-a-module/" target="_blank">https://bouligny.dev/fleet-platform/phase-00-part-01-turning-copy-pasted-terraform-into-a-module/</a></em></p>
+
+    <p><em>Full infrastructure code on GitHub: <a href="https://github.com/JonathanBouligny/fleet-platform" target="_blank">https://github.com/JonathanBouligny/fleet-platform</a></em></p>
+  </div>
+
+  <script>
+    async function copyRichText() {
+      const container = document.getElementById('article-content');
+      const html = container.innerHTML;
+      const text = container.innerText;
+      
+      try {
+        const blobHtml = new Blob([html], { type: 'text/html' });
+        const blobText = new Blob([text], { type: 'text/plain' });
+        const item = new ClipboardItem({
+          'text/html': blobHtml,
+          'text/plain': blobText
+        });
+        await navigator.clipboard.write([item]);
+        alert('Copied to clipboard as formatted rich text!\n\nNow switch to LinkedIn and hit Ctrl + V.');
+      } catch (err) {
+        // Fallback: select content for user to Ctrl+C
+        const range = document.createRange();
+        range.selectNode(container);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        alert('Rich text selected! Press Ctrl + C to copy, then paste into LinkedIn.');
+      }
+    }
+  </script>
+</body>
+</html>

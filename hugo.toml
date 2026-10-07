@@ -3,13 +3,16 @@ languageCode = 'en-us'
 title = "Jon's Devlog"
 theme = 'ananke'
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
   mainSections = ['fleet-platform']
   images = ['images/og-default.png']
   favicon = 'favicon.ico'
 
 [params.ananke.social.follow]
-  networks = ["github", "linkedin"]
+  networks = ["github", "linkedin", "email"]
 
 [params.ananke.social.github]
   username = "JonathanBouligny"
@@ -17,6 +20,9 @@ theme = 'ananke'
 [params.ananke.social.linkedin]
   username = "jonathan-j-bouligny"
   profilelink = "https://www.linkedin.com/in/jonathan-j-bouligny"
+
+[params.ananke.social.email]
+  profilelink = "mailto:jonathanbouligny@gmail.com"
 
 [menus]
   [[menus.main]]

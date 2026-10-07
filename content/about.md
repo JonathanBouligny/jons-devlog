@@ -57,9 +57,27 @@ My current flagship engineering project is **[fleet-platform](/fleet-platform/)*
 
 ---
 
-## Contact & Links
+## Get in Touch
 
-* **Email**: [jonathanbouligny@gmail.com](mailto:jonathanbouligny@gmail.com)
-* **LinkedIn**: [linkedin.com/in/jonathan-j-bouligny](https://www.linkedin.com/in/jonathan-j-bouligny)
-* **GitHub**: [github.com/JonathanBouligny](https://github.com/JonathanBouligny)
-* **Location**: Austin, TX
+Whether you have questions about Fleet Platform, want to discuss infrastructure automation, or have an opportunity to collaborate, feel free to reach out directly:
+
+<div class="ba b--black-10 br3 pa4 bg-white shadow-1 mv4">
+  <div class="flex flex-column flex-row-ns items-start items-center-ns justify-between gap3">
+    <div>
+      <div class="f4 fw7 dark-gray mb1">Let's Connect</div>
+      <div class="f6 mid-gray lh-copy">Based in Austin, TX &bull; Open to platform engineering and infrastructure discussions.</div>
+      <div class="f6 font-mono blue mt2">jonathanbouligny@gmail.com</div>
+    </div>
+    <div class="flex flex-wrap gap2 shrink-0">
+      <a href="mailto:jonathanbouligny@gmail.com?subject=Contact%20from%20Devlog" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1">
+        Send Email &rarr;
+      </a>
+      <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+        LinkedIn
+      </a>
+      <a href="https://github.com/JonathanBouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>

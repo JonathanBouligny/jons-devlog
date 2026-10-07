@@ -52,6 +52,29 @@
         </div>
       {{ end }}
 
+      <!-- Discussion & Feedback Card -->
+      <div class="ba b--black-10 br3 pa3 pa4-ns bg-white shadow-1 mv4">
+        <div class="flex flex-column flex-row-ns items-start items-center-ns justify-between gap3">
+          <div>
+            <div class="f5 fw7 dark-gray mb1">Feedback or questions?</div>
+            <p class="f6 mid-gray ma0 lh-copy">
+              Found a bug, have an architecture idea, or want to discuss this setup? Reach out directly.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap2 shrink-0">
+            <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1">
+              LinkedIn &rarr;
+            </a>
+            <a href="https://github.com/JonathanBouligny/fleet-platform/issues" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+              GitHub Issues
+            </a>
+            <a href="mailto:jonathanbouligny@gmail.com?subject=Devlog%20Feedback:%20{{ .Title | urlquery }}" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+              Email Me
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- Dynamic Series & Chronological Post Navigation (Only on series/section posts) -->
       {{ if or .Params.series (ne .Section "") }}
       <nav class="ba b--black-10 br3 pa3 pa4-ns bg-near-white shadow-1 mv5">

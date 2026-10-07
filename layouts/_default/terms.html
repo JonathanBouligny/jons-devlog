@@ -1,0 +1,157 @@
+{{ define "main" }}
+  <div class="mw8 center ph3 ph4-ns pv4">
+    <!-- Header Hero Card -->
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
+        <a href="/fleet-platform/" class="no-underline blue hover-dark-blue f6 fw6">&larr; Fleet Platform Roadmap</a>
+        <a href="/" class="no-underline blue hover-dark-blue f6 fw6">Home &rarr;</a>
+      </div>
+      <div>
+        <div class="f7 ttu tracked fw7 blue mb1">Topic Index</div>
+        <h1 class="f2 fw8 dark-gray ma0 lh-title">🏷️ Browse by Tag</h1>
+        <p class="f5 mid-gray mt2 mb3 lh-copy">
+          Filter and discover engineering logs by technology, tooling, or architecture component.
+        </p>
+
+        <!-- Live Search Input -->
+        <div class="relative mt3">
+          <input 
+            type="text" 
+            id="tagSearchInput" 
+            placeholder="Search tags (e.g. proxmox, terraform, dns, cert-manager)..." 
+            class="w-100 pa3 ba b--black-20 br2 f5 bg-near-white outline-0 transition hover-b--blue"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div id="searchStats" class="f7 gray mt2 tr">
+            Showing all <span id="visibleCount">{{ len .Data.Pages }}</span> tags
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tag Cloud Overview Card -->
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <h2 class="f4 fw7 dark-gray bb b--black-10 pb3 mb3 ma0">
+        <span>⚡ Quick Tag Cloud</span>
+      </h2>
+      <div class="flex flex-wrap gap2" id="tagCloud">
+        {{ range .Data.Pages }}
+          <a 
+            href="{{ .RelPermalink }}" 
+            data-tag="{{ .Title | lower }}"
+            class="tag-cloud-item no-underline bg-near-white hover-bg-light-blue ba b--black-10 hover-b--blue mid-gray hover-blue ph3 pv2 br2 f6 fw6 dib transition"
+          >
+            #{{ .Title }} <span class="gray f7 ml1">({{ len .Pages }})</span>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Detailed Tag Directory with Articles -->
+    <div id="tagSectionsList" class="flex flex-column gap4">
+      {{ range .Data.Pages }}
+        <div class="tag-section-card bg-white ba b--black-10 br3 pa4 shadow-1" data-tag="{{ .Title | lower }}">
+          <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
+            <h3 class="f4 fw7 dark-gray ma0 flex items-center gap2">
+              <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">#{{ .Title }}</a>
+              <span class="f6 fw5 gray bg-near-white ba b--black-10 ph2 pv1 br2 font-mono">
+                {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
+              </span>
+            </h3>
+            <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw6">
+              View Tag Archive &rarr;
+            </a>
+          </div>
+
+          <div class="flex flex-column gap3">
+            {{ range .Pages }}
+              <div class="ba b--black-10 br2 pa3 bg-near-white hover-b--black-30 transition flex flex-column flex-row-ns items-start items-center-ns justify-between gap3">
+                <div>
+                  <div class="flex items-center f7 gray mb1">
+                    {{ with .Params.phase }}
+                      <span class="bg-lightest-blue dark-blue ba b--light-blue mr2 fw6 font-mono status-pill">Phase {{ . }}</span>
+                    {{ end }}
+                    <span class="mid-gray">{{ .Date.Format "Jan 02, 2006" }}</span>
+                    <span class="mh2">&bull;</span>
+                    <span class="mid-gray">{{ .ReadingTime }} min read</span>
+                  </div>
+                  <h4 class="f5 fw7 dark-gray ma0 lh-title">
+                    <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
+                  </h4>
+                </div>
+                <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7 shrink-0">
+                  Read &rarr;
+                </a>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    <!-- No results fallback message -->
+    <div id="noResults" class="ba b--black-10 br3 pa5 bg-white shadow-1 tc dn mv4">
+      <div class="f2 mb2">🔍</div>
+      <h3 class="f4 fw7 dark-gray mb1">No matching tags found</h3>
+      <p class="f6 mid-gray ma0" id="noResultsText">
+        Try searching for "proxmox", "terraform", "ansible", or "kubernetes".
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const searchInput = document.getElementById('tagSearchInput');
+      const cloudItems = document.querySelectorAll('.tag-cloud-item');
+      const sectionCards = document.querySelectorAll('.tag-section-card');
+      const noResults = document.getElementById('noResults');
+      const noResultsText = document.getElementById('noResultsText');
+      const visibleCountEl = document.getElementById('visibleCount');
+
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        let matches = 0;
+
+        // Filter Cloud Pills
+        cloudItems.forEach(item => {
+          const tag = item.getAttribute('data-tag') || '';
+          if (!query || tag.includes(query)) {
+            item.style.display = 'inline-block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Filter Detailed Section Cards
+        sectionCards.forEach(card => {
+          const tag = card.getAttribute('data-tag') || '';
+          if (!query || tag.includes(query)) {
+            card.style.display = 'block';
+            matches++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update count & empty state
+        if (visibleCountEl) {
+          visibleCountEl.textContent = matches;
+        }
+
+        if (matches === 0) {
+          noResults.classList.remove('dn');
+          noResults.style.display = 'block';
+          if (noResultsText) {
+            noResultsText.textContent = 'No tags matching "' + query + '". Try another keyword or clear search.';
+          }
+        } else {
+          noResults.classList.add('dn');
+          noResults.style.display = 'none';
+        }
+      });
+    })();
+  </script>
+{{ end }}

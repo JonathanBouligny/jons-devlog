@@ -1,0 +1,70 @@
+{{ define "main" }}
+  <div class="mw8 center ph3 ph4-ns pv4">
+    <!-- Tag Hero Card -->
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
+        <a href="/tags/" class="no-underline blue hover-dark-blue f6 fw6">&larr; All Tags</a>
+        <a href="/fleet-platform/" class="no-underline blue hover-dark-blue f6 fw6">Fleet Platform Roadmap &rarr;</a>
+      </div>
+      <div class="flex-ns items-center justify-between">
+        <div>
+          <div class="f7 ttu tracked fw7 blue mb1">Topic Tag</div>
+          <h1 class="f2 fw8 dark-gray ma0 lh-title flex items-center gap2">
+            <span>🏷️ #{{ .Title }}</span>
+          </h1>
+          <p class="f5 mid-gray mt2 mb0 lh-copy">
+            {{ len .Pages }} engineering {{ if eq (len .Pages) 1 }}log{{ else }}logs{{ end }} documented under this topic.
+          </p>
+        </div>
+        <div class="mt3 mt0-ns shrink-0">
+          <a href="/tags/" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
+            🔍 Search Other Tags &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tagged Posts Card -->
+    <div class="bg-white ba b--black-10 br3 pa4 mb4 shadow-1">
+      <div class="flex items-center justify-between bb b--black-10 pb3 mb3">
+        <h2 class="f4 fw7 dark-gray ma0 flex items-center gap2">
+          <span>📝 Articles Tagged #{{ .Title }}</span>
+        </h2>
+        <span class="f6 fw6 gray">{{ len .Pages }} {{ if eq (len .Pages) 1 }}Post{{ else }}Posts{{ end }}</span>
+      </div>
+
+      <div class="flex flex-column gap3">
+        {{ range .Pages }}
+          <div class="ba b--black-10 br3 pa4 bg-near-white hover-b--black-30 transition">
+            <div class="flex justify-between items-center f7 gray mb2">
+              <div class="flex items-center">
+                {{ with .Params.phase }}
+                  <span class="bg-lightest-blue dark-blue ba b--light-blue mr3 fw6 font-mono status-pill">Phase {{ . }}</span>
+                {{ end }}
+                <span class="mid-gray">{{ .Date.Format "January 02, 2006" }}</span>
+              </div>
+              <span class="mid-gray">{{ .ReadingTime }} min read</span>
+            </div>
+
+            <h3 class="f3 fw7 dark-gray mt2 mb2 lh-title">
+              <a href="{{ .RelPermalink }}" class="no-underline dark-gray hover-blue">{{ .Title }}</a>
+            </h3>
+
+            <p class="f5 mid-gray lh-copy mt0 mb3">
+              {{ .Params.summary | default (.Summary | plainify | truncate 180) }}
+            </p>
+
+            <div class="flex justify-between items-center pt3 bt b--black-10">
+              <div class="flex flex-wrap f7">
+                {{ range .Params.tags }}
+                  <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="no-underline {{ if eq (lower .) (lower $.Title) }}bg-blue white b--blue{{ else }}bg-white hover-bg-light-blue ba b--black-10 hover-b--blue mid-gray hover-blue{{ end }} ph2 pv1 br2 f7 mr2 mb1 dib transition">#{{ . }}</a>
+                {{ end }}
+              </div>
+              <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7 flex items-center gap1 shrink-0">Read Full Post &rarr;</a>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+{{ end }}

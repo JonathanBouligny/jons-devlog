@@ -45,79 +45,87 @@
       <!-- Tags -->
       {{ with .Params.tags }}
         <div class="mt4 pt3 bt b--black-10 flex flex-wrap items-center">
-          <span class="f6 fw6 gray mr2 mb1">Tags:</span>
+          <span class="f6 fw6 gray mr2 mb2">Tags:</span>
           {{ range . }}
-            <span class="bg-near-white ba b--black-10 mid-gray ph2 pv1 br2 f7 mr2 mb1 dib">{{ . }}</span>
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="no-underline bg-near-white hover-bg-light-blue ba b--black-10 hover-b--blue mid-gray hover-blue ph2 pv1 br2 f7 mr2 mb2 dib transition">
+              #{{ . }}
+            </a>
           {{ end }}
+          <a href="{{ "/tags/" | relURL }}" class="no-underline blue hover-dark-blue f7 fw6 ml1 mb2 dib transition">
+            Browse all tags &rarr;
+          </a>
         </div>
       {{ end }}
 
       <!-- Post Feedback & Series Navigation (Only on series/section posts) -->
       {{ if or .Params.series (ne .Section "") }}
-      <div class="ba b--black-10 br3 pa3 pa4-ns bg-white shadow-1 mv4">
+      <div class="ba b--black-10 br3 pa4 bg-white shadow-1 mv4">
         <div class="flex flex-column flex-row-ns items-start items-center-ns justify-between gap3">
-          <div>
-            <div class="f5 fw7 dark-gray mb1">Feedback or questions?</div>
+          <div class="pr3-ns mb3 mb0-ns">
+            <div class="f5 fw7 dark-gray mb1 flex items-center gap2">
+              <span>💬 Feedback or questions?</span>
+            </div>
             <p class="f6 mid-gray ma0 lh-copy">
               Found a bug, have an architecture idea, or want to discuss this setup? Reach out directly.
             </p>
           </div>
-          <div class="flex flex-wrap gap2 shrink-0">
-            <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1">
+          <div class="flex flex-wrap items-center gap2 shrink-0">
+            <a href="mailto:jonathanbouligny@gmail.com?subject=Devlog%20Feedback:%20{{ .Title | urlquery }}" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1 transition">
+              ✉️ Email Me
+            </a>
+            <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
               LinkedIn &rarr;
             </a>
-            <a href="https://github.com/JonathanBouligny/fleet-platform/issues" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+            <a href="https://github.com/JonathanBouligny/fleet-platform/issues" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
               GitHub Issues
-            </a>
-            <a href="mailto:jonathanbouligny@gmail.com?subject=Devlog%20Feedback:%20{{ .Title | urlquery }}" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
-              Email Me
             </a>
           </div>
         </div>
       </div>
 
       <!-- Dynamic Series & Chronological Post Navigation -->
-      <nav class="ba b--black-10 br3 pa3 pa4-ns bg-near-white shadow-1 mv5">
-        <div class="f7 ttu tracked fw7 mid-gray mb3 tc flex items-center justify-center gap2">
-          <span>Part of Series:</span>
+      <nav class="ba b--black-10 br3 pa3 pa4-ns bg-near-white shadow-1 mv4">
+        <div class="f7 ttu tracked fw7 mid-gray mb3 tc flex items-center justify-center gap1">
+          <span class="gray">Series:</span>
           <a href="{{ with .CurrentSection }}{{ .RelPermalink }}{{ else }}/fleet-platform/{{ end }}" class="blue no-underline hover-dark-blue fw7">
-            {{ with .CurrentSection }}{{ .Title }}{{ else }}Fleet Platform{{ end }}
+            Fleet Platform
           </a>
         </div>
         <div class="flex flex-column flex-row-ns justify-between items-stretch gap3">
           <!-- Previous Post -->
-          <div class="w-100 w-33-ns mb2 mb0-ns flex flex-column justify-center">
+          <div class="w-100 w-33-ns mb2 mb0-ns flex flex-column">
             {{ with .PrevInSection }}
               <a href="{{ .RelPermalink }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between">
-                <span class="f7 fw7 db blue mb1">&larr; Previous Post</span>
+                <span class="f7 fw7 db blue mb2">&larr; Previous Post</span>
                 <span class="f6 fw6 dark-gray db lh-title">{{ .Title }}</span>
               </a>
             {{ else }}
-              <div class="ba b--black-05 br2 pa3 bg-white-50 gray o-60 h-100 flex flex-column justify-center">
+              <div class="ba b--black-05 br2 pa3 bg-white-60 gray o-60 h-100 flex flex-column justify-center tc">
                 <span class="f7 fw6 db mb1">&larr; Previous</span>
-                <span class="f6 db">First post in series</span>
+                <span class="f7 db mid-gray">First post in series</span>
               </div>
             {{ end }}
           </div>
 
           <!-- Series Roadmap Hub -->
-          <div class="w-100 w-33-ns mb2 mb0-ns flex items-center justify-center">
-            <a href="{{ with .CurrentSection }}{{ .RelPermalink }}{{ else }}/fleet-platform/{{ end }}" class="no-underline inline-flex items-center justify-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1 tc w-100 h-100">
-              🗺️ Series Roadmap &rarr;
+          <div class="w-100 w-33-ns mb2 mb0-ns flex flex-column">
+            <a href="{{ with .CurrentSection }}{{ .RelPermalink }}{{ else }}/fleet-platform/{{ end }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between tc">
+              <span class="f7 fw7 db mid-gray mb2">Series Hub</span>
+              <span class="f6 fw7 dark-gray db lh-title">🗺️ Full Roadmap &rarr;</span>
             </a>
           </div>
 
           <!-- Next Post -->
-          <div class="w-100 w-33-ns flex flex-column justify-center tr-ns">
+          <div class="w-100 w-33-ns flex flex-column">
             {{ with .NextInSection }}
-              <a href="{{ .RelPermalink }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between">
-                <span class="f7 fw7 db blue mb1">Next Post &rarr;</span>
+              <a href="{{ .RelPermalink }}" class="no-underline db bg-white ba b--black-10 hover-b--blue br2 pa3 transition shadow-hover h-100 flex flex-column justify-between tr-ns">
+                <span class="f7 fw7 db blue mb2">Next Post &rarr;</span>
                 <span class="f6 fw6 dark-gray db lh-title">{{ .Title }}</span>
               </a>
             {{ else }}
-              <div class="ba b--black-05 br2 pa3 bg-white-50 gray o-60 h-100 flex flex-column justify-center">
+              <div class="ba b--black-05 br2 pa3 bg-white-60 gray o-60 h-100 flex flex-column justify-center tc">
                 <span class="f7 fw6 db mb1">Next &rarr;</span>
-                <span class="f6 db">Latest post published</span>
+                <span class="f7 db mid-gray">Latest post published</span>
               </div>
             {{ end }}
           </div>

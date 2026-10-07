@@ -65,7 +65,7 @@
             <div class="flex justify-between items-center pt3 bt b--black-10">
               <div class="flex flex-wrap f7">
                 {{ range .Params.tags }}
-                  <span class="bg-white ba b--black-10 mid-gray ph2 pv1 br2 f7 mr2 mb1 dib">{{ . }}</span>
+                  <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="no-underline bg-white hover-bg-light-blue ba b--black-10 hover-b--blue mid-gray hover-blue ph2 pv1 br2 f7 mr2 mb1 dib transition">#{{ . }}</a>
                 {{ end }}
               </div>
               <a href="{{ .RelPermalink }}" class="no-underline blue hover-dark-blue f6 fw7 flex items-center gap1 shrink-0">Read Full Post &rarr;</a>

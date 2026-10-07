@@ -52,7 +52,8 @@
         </div>
       {{ end }}
 
-      <!-- Discussion & Feedback Card -->
+      <!-- Post Feedback & Series Navigation (Only on series/section posts) -->
+      {{ if or .Params.series (ne .Section "") }}
       <div class="ba b--black-10 br3 pa3 pa4-ns bg-white shadow-1 mv4">
         <div class="flex flex-column flex-row-ns items-start items-center-ns justify-between gap3">
           <div>
@@ -75,8 +76,7 @@
         </div>
       </div>
 
-      <!-- Dynamic Series & Chronological Post Navigation (Only on series/section posts) -->
-      {{ if or .Params.series (ne .Section "") }}
+      <!-- Dynamic Series & Chronological Post Navigation -->
       <nav class="ba b--black-10 br3 pa3 pa4-ns bg-near-white shadow-1 mv5">
         <div class="f7 ttu tracked fw7 mid-gray mb3 tc flex items-center justify-center gap2">
           <span>Part of Series:</span>

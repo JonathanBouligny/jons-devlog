@@ -8,6 +8,15 @@ I am a **Platform and Infrastructure Engineer** based in Austin, Texas, with 6+ 
 
 I hold the **Red Hat Certified Architect (RHCA) in Ansible** credential and specialize in building deterministic, reproducible systems from the bare hypervisor up using **Terraform, Ansible, Kubernetes (k3s/OpenShift), and GitOps (Argo CD)**.
 
+<div class="mv3 flex flex-wrap gap2 items-center">
+  <a href="/Jonathan_Bouligny_Resume_2026_CURRENT.pdf" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1 transition">
+    📄 Download Resume (PDF) &rarr;
+  </a>
+  <a href="mailto:jonathanbouligny@gmail.com?subject=Contact%20from%20Devlog" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
+    ✉️ Email Me
+  </a>
+</div>
+
 ---
 
 ## What I'm Building Now: Fleet Platform
@@ -16,7 +25,8 @@ My current flagship engineering project is **[fleet-platform](/fleet-platform/)*
 
 * **Infrastructure as Code**: VMs provisioned via Terraform (`bpg/proxmox`) from cloud-init templates; nodes configured and bootstrapped via Ansible.
 * **Declarative GitOps**: Full cluster state managed via Argo CD (app-of-apps pattern) syncing from a code-provisioned Forgejo instance with remote Terraform state locked in AWS S3.
-* **Cattle, Not Pets**: The real test of reproducibility is a full teardown. The entire platform, from empty hypervisors to running workloads, ingress, wildcard TLS, and synced apps, is continuously verified by rebuilding from scratch via a single automated script to eliminate configuration drift.
+* **Platform Observability**: Prometheus and Grafana deployed through the same GitOps workflow, monitoring the platform with blackbox exporter probes, 99% availability SLOs, and multi-window burn-rate alerts (page on fast burns, ticket on slow).
+* **Cattle, Not Pets**: The real test of reproducibility is a full teardown. The entire platform, from empty hypervisors to running workloads, ingress, wildcard TLS, and synced apps, is continuously verified by rebuilding from scratch via a single automated script to eliminate configuration drift in 3 to 7 minutes.
 * **The Endgame**: Scaling the cluster with a dedicated GPU node to run automated, parallel, deterministic **Gazebo robotics simulations** via Argo Workflows batch pipelines.
 
 ---
@@ -28,7 +38,7 @@ My current flagship engineering project is **[fleet-platform](/fleet-platform/)*
 * **Dynamic CMDB Integration**: Engineered a custom Python dynamic inventory plugin enabling Ansible Automation Platform (AAP) to consume ~1,300 hosts across two datacenters from an Ivanti CMDB, filtering systems by lifecycle status and team ownership to eliminate mis-targeted automation.
 * **Multi-Node Platform Installs**: Architected and deployed multi-node AAP clusters (controller, private automation hub, database) on VMware vSphere, converting manual runbooks into fully versioned Ansible code for zero-drift rebuilds.
 * **CI/CD Image Optimization**: Converted Ansible Execution Environment (EE) image builds into a pipeline-driven IaC workflow, slashing build times from 10 minutes to 2 minutes on disconnected networks.
-* **Air-Gapped Source Control**: Deployed containerized GitLab on Podman and systemd in an isolated enclave to establish the customer’s first version-control pipeline for enterprise automation.
+* **Air-Gapped Source Control**: Deployed containerized GitLab on Podman and systemd in an isolated enclave to establish the customer's first version-control pipeline for enterprise automation.
 
 ### **Lockheed Martin**: Software Engineer *(2020 - 2022)*
 * Resolved mission-critical Red Hat OpenShift deployment blockers by analyzing pod logs, isolating container lifecycle failures, and correcting Kubernetes deployment manifests to restore service.
@@ -37,10 +47,11 @@ My current flagship engineering project is **[fleet-platform](/fleet-platform/)*
 
 ## Technical Competencies
 
-* **Languages**: Python, Bash, YAML, Go (learning), C++, JavaScript
-* **Cloud & Infrastructure**: Linux (RHEL, Ubuntu), Proxmox VE, VMware vSphere, AWS (S3, IAM, VPC), Bare-metal Networking
-* **Kubernetes & GitOps**: Kubernetes, k3s, Red Hat OpenShift, Argo CD (app-of-apps), Helm, Podman, Docker
-* **Automation & IaC**: Ansible (RHCA), Terraform, cloud-init, Red Hat Satellite, CI/CD pipelines
+* **Languages**: Python, Bash, JavaScript, C++
+* **Infrastructure**: Linux (RHEL, Ubuntu), Proxmox VE, VMware vSphere, Networking
+* **Automation & IaC**: Ansible, Terraform, Red Hat Ansible Automation Platform 2.4, Red Hat Satellite 6.15, CI/CD, Infrastructure as Code (IaC), YAML
+* **Kubernetes & GitOps**: Kubernetes, k3s, Red Hat OpenShift 4.14, Argo CD, GitOps, Helm, cert-manager, HAProxy, Containers (Docker/Podman), cloud-init, Git, AWS (S3, IAM)
+* **Observability & SRE**: Prometheus, Grafana, PromQL, Alertmanager, blackbox exporter, SLIs/SLOs, multi-window burn-rate alerting
 
 ---
 
@@ -69,13 +80,16 @@ Whether you have questions about Fleet Platform, want to discuss infrastructure 
       <div class="f6 font-mono blue mt2">jonathanbouligny@gmail.com</div>
     </div>
     <div class="flex flex-wrap gap2 shrink-0">
-      <a href="mailto:jonathanbouligny@gmail.com?subject=Contact%20from%20Devlog" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1">
+      <a href="/Jonathan_Bouligny_Resume_2026_CURRENT.pdf" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-black hover-bg-dark-gray white f6 fw6 ph3 pv2 br2 shadow-1 transition">
+        📄 Resume (PDF)
+      </a>
+      <a href="mailto:jonathanbouligny@gmail.com?subject=Contact%20from%20Devlog" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
         Send Email &rarr;
       </a>
-      <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+      <a href="https://www.linkedin.com/in/jonathan-j-bouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
         LinkedIn
       </a>
-      <a href="https://github.com/JonathanBouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2">
+      <a href="https://github.com/JonathanBouligny" target="_blank" rel="noopener" class="no-underline inline-flex items-center bg-near-white hover-bg-light-gray dark-gray ba b--black-10 f6 fw6 ph3 pv2 br2 transition">
         GitHub
       </a>
     </div>

@@ -13,7 +13,7 @@
         <ul class="pl0 mv0 flex items-center list">
           {{ range .Site.Menus.main }}
           <li class="mr3 mr4-ns">
-            <a class="f6 fw6 white-80 hover-white no-underline transition" href="{{ .URL }}" title="{{ .Name }}">
+            <a class="f6 fw6 white-80 hover-white no-underline transition" href="{{ .URL }}" title="{{ .Name }}" {{ if strings.HasSuffix .URL ".pdf" }}target="_blank" rel="noopener"{{ end }}>
               {{ .Name }}
             </a>
           </li>

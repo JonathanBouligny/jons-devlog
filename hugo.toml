@@ -37,3 +37,7 @@ theme = 'ananke'
     name = 'Tags'
     pageRef = '/tags'
     weight = 30
+  [[menus.main]]
+    name = 'Resume'
+    url = '/Jonathan_Bouligny_Resume_2026_CURRENT.pdf'
+    weight = 40
